@@ -1,19 +1,24 @@
-"""This file contains tests for main."""
-
 # #
 #  Import LIBRARIES
+import pytest
+
 #  Import FILES
-from main import add_some_numbers
+from main import multiply
 
 #
 
-# 1. Have some code to test (ideally in clean functions or classes!)
-# 2. Install pytest
-# 3. Import your function, make up an expected output, and then check for it.
-#
+
+"""Pytest EP4 - Parametrizing Your Tests"""
+"""Parameterize"""
 
 
-def test_add_some_numbers() -> None:
-    assert add_some_numbers(x=10, y=10) == 20
-    assert add_some_numbers(x=1, y=1) == 2
-    assert add_some_numbers(x=10, y=100) == 110
+@pytest.mark.parametrize(argnames="a,b, expected", argvalues=[(10, 5, 50), (10, 10, 100), (1, 1, 1)])
+# @pytest.mark.parametrize(argnames="a,b, expected", argvalues=[(10, 5, 50)])
+def test_multiply(a: int, b: int, expected: int) -> None:
+    result: int = multiply(a=a, b=b)
+    assert result == expected
+
+
+# def test_multiply() -> None:
+#     result: int = multiply(a=10, b=5)
+#     assert result == 50

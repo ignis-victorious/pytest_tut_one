@@ -1,17 +1,17 @@
-"""This file contains some code I want to run tests for"""
 # #
 #  Import LIBRARIES
+
 #  Import FILES
 #
 
 
-def add_some_numbers(x: int, y: int) -> int:
-    """Well, add some numbers.."""
-    return x + y
+"""Pytest EP4 - Parametrizing Your Tests"""
+
+"""Some basic code."""
 
 
-#
-#  Import LIBRARIES
-#  Import FILES
-#
-# #
+# Suppose we want to run a function with a range of inputs to test it?
+# Rather than writing multiple tests, we can use parameterize!
+def multiply(a: int, b: int) -> int:
+    """Multiply some numbers"""
+    return a * b
