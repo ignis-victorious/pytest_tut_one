@@ -1,13 +1,27 @@
-"""This file contains some code I want to run tests for"""
 # #
 #  Import LIBRARIES
 #  Import FILES
 #
 
 
-def add_some_numbers(x: int, y: int) -> int:
-    """Well, add some numbers.."""
-    return x + y
+"""Pytest EP5 - Fixtures and Conftest"""
+
+"""Pytests Fixtures."""
+
+
+def find_average(nums: list[int]) -> float:
+    """Calculate the average."""
+    return sum(nums) / len(nums)
+
+
+def find_biggest(nums: list[int]) -> int:
+    """Return the biggest number"""
+    return max(nums)
+
+
+def find_smallest(nums: list[int]) -> int:
+    """Return the smallest number"""
+    return min(nums)
 
 
 #

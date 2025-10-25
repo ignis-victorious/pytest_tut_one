@@ -1,19 +1,50 @@
-"""This file contains tests for main."""
-
-# #
+#
 #  Import LIBRARIES
+# import pytest
+
 #  Import FILES
-from main import add_some_numbers
+from main import find_average, find_biggest, find_smallest
 
 #
-
-# 1. Have some code to test (ideally in clean functions or classes!)
-# 2. Install pytest
-# 3. Import your function, make up an expected output, and then check for it.
-#
+# #
 
 
-def test_add_some_numbers() -> None:
-    assert add_some_numbers(x=10, y=10) == 20
-    assert add_some_numbers(x=1, y=1) == 2
-    assert add_some_numbers(x=10, y=100) == 110
+"""Pytest EP5 - Fixtures and Conftest"""
+
+
+# @pytest.fixture
+# def numbers() -> list[int]:
+#     return [1, 2, 3, 4, 5]
+
+
+# @pytest.fixture(name="some_numbers")
+# def my_numbers() -> list[int]:
+#     return [1, 2, 3, 4, 5]
+
+
+def test_find_average(numbers: list[int]) -> None:
+    assert find_average(nums=numbers) == 3.0
+
+
+def test_find_biggest(numbers: list[int]) -> None:
+    assert find_biggest(nums=numbers) == 5
+
+
+def test_find_smallest(some_numbers: list[int]) -> None:
+    assert find_smallest(nums=some_numbers) == 1
+
+
+# # Original code
+# def test_find_average() -> None:
+#     numbers: list[int] = [1, 2, 3, 4, 5]
+#     assert find_average(nums=numbers) == 3.0
+
+
+# def test_find_biggest() -> None:
+#     numbers: list[int] = [1, 2, 3, 4, 5]
+#     assert find_biggest(nums=numbers) == 5
+
+
+# def test_find_smallest() -> None:
+#     numbers: list[int] = [1, 2, 3, 4, 5]
+#     assert find_smallest(nums=numbers) == 1
