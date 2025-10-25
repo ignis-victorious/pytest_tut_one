@@ -1,19 +1,36 @@
-"""This file contains tests for main."""
-
 # #
 #  Import LIBRARIES
+from typing import Any
+
+from requests.exceptions import RequestException  # <--- THE FIX
+
 #  Import FILES
-from main import add_some_numbers
+from main import make_get_request
 
 #
 
-# 1. Have some code to test (ideally in clean functions or classes!)
-# 2. Install pytest
-# 3. Import your function, make up an expected output, and then check for it.
-#
+
+"""Pytest EP3 - Mocking & Patching the Requests Module"""
+"""Tests for the get-request code."""
+# Why mock? - We dont want to have to rely on dependencies, plus we can test offline!
+# pip install pytest-mock
 
 
-def test_add_some_numbers() -> None:
-    assert add_some_numbers(x=10, y=10) == 20
-    assert add_some_numbers(x=1, y=1) == 2
-    assert add_some_numbers(x=10, y=100) == 110
+def test_valid_response(mocker) -> None:
+    mock_response = mocker.Mock()
+    mock_response.json.return_value = {"headers": {"tst": 123}}
+    mocker.patch("main.rq.get", return_value=mock_response)
+
+    result: Any | dict[str, str] = make_get_request(url="validurl")
+    assert result == {"tst": 123}
+    # assert result == {}
+
+
+def test_invalid_response(mocker) -> None:
+    mocker.patch("main.rq.get", side_effect=RequestException)
+    result: Any | dict[str, str] = make_get_request(url="invalidurt")
+    assert result == {"Error": "oh no!"}
+
+
+# def test_valid_response(mocker) -> None:
+#     assert 1

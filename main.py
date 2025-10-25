@@ -1,17 +1,31 @@
-"""This file contains some code I want to run tests for"""
 # #
 #  Import LIBRARIES
+from typing import Any
+
+import requests as rq
+
+# Import the specific exception directly
+from requests.exceptions import RequestException  # <--- THE FIX
+
 #  Import FILES
 #
 
 
-def add_some_numbers(x: int, y: int) -> int:
-    """Well, add some numbers.."""
-    return x + y
+"""Pytest EP3 - Mocking & Patching the Requests Module"""
+"""Requests code."""
 
 
-#
-#  Import LIBRARIES
-#  Import FILES
-#
-# #
+def make_get_request(url: str) -> Any | dict[str, str]:
+    try:
+        response: rq.Response = rq.get(url=url)
+    except RequestException:
+        return {"Error": "oh no!"}
+    return response.json()["headers"]
+
+
+print("START")
+works: Any | dict[str, str] = make_get_request(url="https://httpbin.org/get")
+print(works, "\n\n")
+fails: Any | dict[str, str] = make_get_request(url="https://notasite.abc")
+print(fails)
+print("END")
