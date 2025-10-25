@@ -17,3 +17,5 @@ def test_add_some_numbers() -> None:
     assert add_some_numbers(x=10, y=10) == 20
     assert add_some_numbers(x=1, y=1) == 2
     assert add_some_numbers(x=10, y=100) == 110
+    assert add_some_numbers(x=4, y=4) == 8
+    assert add_some_numbers(x=11, y=77) == 110
